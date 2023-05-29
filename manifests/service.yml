@@ -13,6 +13,6 @@ spec:
     nodePort: 30001
   selector:
     app: block-buster
-    version: 7.1.0
+    version: 7.2.0
     env: dev
   type: NodePort
