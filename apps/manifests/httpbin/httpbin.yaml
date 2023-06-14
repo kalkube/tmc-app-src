@@ -41,8 +41,18 @@ metadata:
   labels:
     app: httpbin
 spec:
-  defaultBackend:
-    service:
-      name: httpbin
-      port:
-        number: 80
+  tls:
+  - secretName: httpbin-acme
+    hosts:
+    - httpbin.kal.automatestuff.io
+  rules:
+  - host: httpbin.kal.automatestuff.io
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service: 
+            name: httpbin
+            port:
+              number: 80
