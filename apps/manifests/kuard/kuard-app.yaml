@@ -41,8 +41,18 @@ metadata:
   labels:
     app: kuard
 spec:
-  defaultBackend:
-    service:
-      name: kuard
-      port:
-        number: 80
+  tls:
+  - secretName: kuard-acme
+    hosts:
+    - kuard.kal.automatestuff.io
+  rules:
+  - host: kuard.kal.automatestuff.io
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service: 
+            name: kuard
+            port:
+              number: 80
